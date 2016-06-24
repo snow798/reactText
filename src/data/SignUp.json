@@ -1,0 +1,13 @@
+//成功
+{
+  "status": 1,
+  "errorMsg": "",
+  "errorCode": "200"
+}
+//失败
+/*
+{
+  "status": 0,
+  "errorMsg": "该手机已经报名，请勿重新报名！",
+  "errorCode": "200"
+}*/
