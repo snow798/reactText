@@ -25,8 +25,8 @@ export default (initialState = {}, history) => {
   // ======================================================
   //实例 store
   const store = createStore(
-    makeRootReducer(),
-    initialState,
+    makeRootReducer(),    //初始化reducer
+    initialState,         //初始 state
     compose(
       applyMiddleware(...middleware),
       ...enhancers

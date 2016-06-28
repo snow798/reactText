@@ -27,21 +27,25 @@ import './main.scss'
 
 export const activeList = React.createClass({
   getInitialState: function() {
-    return {data: [435,555]};
+    this.props.doubleAsync();
+    return {data: []};
   },
-  componentDidMount: function(){
+  componentDidMount: function(props){
 
+      //console.log(data)
+  },
+  componentWillReceiveProps: function(nextProps) {
+    console.log(777, nextProps.active, this.props.active);
   },
   render: function(props) {
     return (
       <div className="eventList">
         <div className="header"  onClick={this.props.doubleAsync}>
           <Tabs />
-          {console.log(this.props.doubleAsync)}
         </div>
         <div className="body" id="listCont">
           <div>
-            <List />
+            <List collection={this.props.active}/>
             <ul className="past"></ul>
             <div className="status"><img src={loadStatusImg} width="25"/><span>正在加载...</span></div>
           </div>

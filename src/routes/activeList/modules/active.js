@@ -8,11 +8,13 @@ export const COUNTER_INCREMENT = 'ACTIVE_GET'
 // ------------------------------------
 // Actions
 // ------------------------------------
-export function getActive (itemType = 'cur') {
-  console.log(itemType)
+export function getActive ({itemType = 'cur', data = null}) {
+  console.log(data);
   return {
     type: COUNTER_INCREMENT,
-    itemType: itemType
+    itemType: itemType,
+    active: data,
+    time: Date.now()
   }
 }
 
@@ -29,16 +31,31 @@ export const doubleAsync = () => {
 
     return new Promise((resolve) => {
       console.log(fetch)
+      //require('data/eventList.json');
 
-      fetch('./data/eventList.json')
-        .then(
-          function resolver(ret) {
-            console.log(ret)
+      fetch(bassUrl+ 'eventList.json')
+        .then(function(res) {
+            if(res.ok){
+              res.json().then(function (data) {
+                console.log(99, data);
+                dispatch(getActive({itemType: 'cur', data: data.data}))
+              });
+            }
           },
-          function rejector(err) {
-            console.log(55, ret)
+          function(err) {
+           alert('err')
           })
 
+
+      /*fetch('https://www.yiqihao.com/get/time')
+        .then(function(res) {
+          console.log(55555, res)
+          if(res.ok){
+            res.json().then(function (data) {
+              console.log(99, data);
+            });
+          }
+        })*/
       /*setTimeout(() => {
         dispatch(getActive(getState().counter))
         alert(2343)
@@ -58,7 +75,10 @@ export const actions = {
 // Action Handlers
 // ------------------------------------
 const ACTION_HANDLERS = {
-  [COUNTER_INCREMENT]: (state, action) => state + action.payload
+  [COUNTER_INCREMENT]: (state, action) => {
+    console.log(552,state, action)
+    return  Object.assign({}, state, action.active)
+  }
 }
 
 // ------------------------------------

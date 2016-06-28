@@ -66,3 +66,4 @@ var browser = (function() {
   })
 
 }();
+window.bassUrl= 'http://127.0.0.1:4000/ok/%E5%8D%93%E5%B0%94%E8%B4%AD/ccc/react-redux-starter-kit/src/data/';

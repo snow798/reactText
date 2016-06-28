@@ -17,6 +17,9 @@ export const List= (props) => (
         </div>
       </a>
     </li>
+    
+
+    {props.collection.type}
   </ul>
 )
 

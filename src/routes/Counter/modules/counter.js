@@ -6,7 +6,7 @@
 export const COUNTER_INCREMENT = 'COUNTER_INCREMENT'
 
 // ------------------------------------
-// Actions
+// Actions  actions 有两种 直接返回对象或函数
 // ------------------------------------
 export function increment (value = 1) {
   return {
@@ -42,6 +42,7 @@ export const actions = {
 // ------------------------------------
 // Action Handlers
 // ------------------------------------
+// Action Handlers  执行对state的操作 reducer操作
 const ACTION_HANDLERS = {
   [COUNTER_INCREMENT]: (state, action) => state + action.payload
 }
@@ -52,6 +53,6 @@ const ACTION_HANDLERS = {
 const initialState = 0
 export default function counterReducer (state = initialState, action) {
   const handler = ACTION_HANDLERS[action.type]
-
+  //检查对应的action 是否有Handlers 有就返回，没有就直接返回原始数据
   return handler ? handler(state, action) : state
 }

@@ -9,9 +9,9 @@ export const makeRootReducer = (asyncReducers) => {
     ...asyncReducers
   })
 }
-// 插入子 reducer
+// 插入子 reducer 在异步载入组件时调用
 export const injectReducer = (store, { key, reducer }) => {
-  store.asyncReducers[key] = reducer
+  store.asyncReducers[key] = reducer    //reducer 值是一个函数或是原始state
   store.replaceReducer(makeRootReducer(store.asyncReducers))
 }
 
