@@ -5,7 +5,7 @@
 import React from 'react'
 import Tabs from './tabs'
 import List from './list'
-import loadStatusImg from './assets/8.svg'
+
 import './main.scss'
 
 
@@ -19,7 +19,7 @@ export const activeList = React.createClass({
       //console.log(data)
   },
   componentWillReceiveProps: function(nextProps) {
-    console.log(777, nextProps.active, this.props.active);
+    //console.log(777, nextProps.active, this.props.active);
   },
   render: function(props) {
     return (
@@ -27,14 +27,8 @@ export const activeList = React.createClass({
         <div className="header"  onClick={this.props.doubleAsync}>
           <Tabs />
         </div>
-        <div className="body" id="listCont">
-          <div>
             <List collection={this.props.active}/>
-            <ul className="past"></ul>
-            <div className="status"><img src={loadStatusImg} width="25"/><span>正在加载...</span></div>
-          </div>
         </div>
-      </div>
     );
   }
 });
