@@ -17,12 +17,12 @@ export const List = React.createClass({
     var base= this;
     var content= this.refs.listCont;
     content.addEventListener('scroll', function(ev){
-      console.log(222222, content, base.state.sd)
-
       var tp= base.state.type== 'm' ? 'eventDetails': 'siteReview';
       var scrollTop= this.scrollTop;
       if(scrollTop+ this.clientHeight+20 >= this.scrollHeight && !base.state.listLoad){
+        base.state.listLoad= !base.state.listLoad;
         console.log(7777777)
+        base.props.getListData();
       }
     }, false);
   },

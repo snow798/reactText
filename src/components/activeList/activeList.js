@@ -27,7 +27,7 @@ export const activeList = React.createClass({
         <div className="header"  onClick={this.props.doubleAsync}>
           <Tabs />
         </div>
-            <List collection={this.props.active}/>
+            <List getListData={this.props.doubleAsync} collection={this.props.active}/>
         </div>
     );
   }
