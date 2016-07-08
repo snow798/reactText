@@ -13,7 +13,7 @@ export default {
     proxy: {
       enabled: false,
       options: {
-        host: 'http://localhost:8000',
+        host: 'http://127.0.0.1:4000/ok/%E5%8D%93%E5%B0%94%E8%B4%AD/ccc/react-redux-starter-kit/src/',
         match: /^\/api\/.*/
       }
     }

@@ -6,11 +6,13 @@ import React from 'react'
 import defaultImg from './assets/ba1.jpg'
 import loadStatusImg from './assets/8.svg'
 
+
 export const List = React.createClass({
   getInitialState: function() {
     return {
       loaded: false,
-      type: 'm'
+      type: 'm',
+      data: []
     };
   },
   componentDidMount: function(props){
@@ -26,13 +28,24 @@ export const List = React.createClass({
       }
     }, false);
   },
+  componentWillReceiveProps: function(nextProps) {
+    console.log(777444, nextProps.active, this.props.active);
+  },
+
   render: function(props) {
-    let items = [];
+    let items = [433,66];
+    var list;
     if(this.props.collection && this.props.collection.list){
-      let list= this.props.collection.list;
-      for (var i in list) {
+      let res= this.props.collection.list;
+      let arr= [];
+      for(var i in res) {
+        console.log(55,res[i]);
+        arr.push(res[i]);
+      }
+      this.state.data= arr;
+      /*for (var i in list) {
         let ob= list[i];
-        items.push(<li>
+        items.push(<li key={i}>
           <a>
             <div className="img"><img src={defaultImg}/></div>
             <div className="text">
@@ -41,7 +54,7 @@ export const List = React.createClass({
             </div>
           </a>
         </li>);
-      }
+      }*/
     }else{
       console.log('no no no')
     }
@@ -49,7 +62,17 @@ export const List = React.createClass({
       <div className="body"  ref="listCont">
         <div>
           <ul>
-            {items}
+            {this.state.data.map(function(result, index) {
+              return <li key={index}>
+                <a>
+                  <div className="img"><img src={defaultImg}/></div>
+                  <div className="text">
+                    <span>报名截止时间：{result.time}</span>
+                    <em>立即报名</em>
+                  </div>
+                </a>
+              </li>;
+            })}
           </ul>
           <div className="status"><img src={loadStatusImg} width="25"/><span>正在加载...</span></div>
         </div>

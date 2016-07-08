@@ -33,11 +33,11 @@ export const doubleAsync = () => {
       console.log(fetch)
       //require('data/eventList.json');
 
-      fetch(bassUrl+ 'eventList.json')
+      fetch(bassUrl+ '/eventList.json')
         .then(function(res) {
             if(res.ok){
               res.json().then(function (data) {
-                console.log(99, data);
+                console.log(777777,data);
                 dispatch(getActive({itemType: 'cur', data: data.data}))
               });
             }
@@ -77,7 +77,18 @@ export const actions = {
 const ACTION_HANDLERS = {
   [COUNTER_INCREMENT]: (state, action) => {
     console.log(552,state, action)
-    return  Object.assign({}, state, action.active)
+    let res= action.active;
+    let newData= {};
+    if(state){
+      let old= state.list;
+      let ne= action.active.list;
+      newData.list=  Object.assign({}, old, ne);
+      console.log(3333,newData, old, ne);
+    }
+    else{
+      newData= action.active;
+    }
+    return  Object.assign({}, state, newData)
   }
 }
 
