@@ -18,14 +18,6 @@ export function getActive ({itemType = 'cur', data = null}) {
   }
 }
 
-/*  This is a thunk, meaning it is a function that immediately
-    returns a function for lazy evaluation. It is incredibly useful for
-    creating async actions, especially when combined with redux-thunk!
-
-    NOTE: This is solely for demonstration purposes. In a real application,
-    you'd probably want to dispatch an action of COUNTER_DOUBLE and let the
-    reducer take care of this logic.  */
-
 export const doubleAsync = () => {
   return (dispatch, getState) => {
 
@@ -45,22 +37,6 @@ export const doubleAsync = () => {
           function(err) {
            alert('err')
           })
-
-
-      /*fetch('https://www.yiqihao.com/get/time')
-        .then(function(res) {
-          console.log(55555, res)
-          if(res.ok){
-            res.json().then(function (data) {
-              console.log(99, data);
-            });
-          }
-        })*/
-      /*setTimeout(() => {
-        dispatch(getActive(getState().counter))
-        alert(2343)
-        resolve()
-      }, 200)*/
 
     })
   }

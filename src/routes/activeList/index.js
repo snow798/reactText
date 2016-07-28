@@ -3,7 +3,6 @@
  */
 
 import { injectReducer } from '../../store/reducers'
-import activeList from  'components/activeList'
 
 export default (store) => ({
   path: 'activeList',

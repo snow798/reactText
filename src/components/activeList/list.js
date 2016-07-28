@@ -3,6 +3,7 @@
  */
 
 import React from 'react'
+import { Router, Route, Link } from 'react-router'
 import defaultImg from './assets/ba1.jpg'
 import loadStatusImg from './assets/8.svg'
 
@@ -64,13 +65,13 @@ export const List = React.createClass({
           <ul>
             {this.state.data.map(function(result, index) {
               return <li key={index}>
-                <a>
+                <Link to={`/activeDetail/${result.id}`}>
                   <div className="img"><img src={defaultImg}/></div>
                   <div className="text">
                     <span>报名截止时间：{result.time}</span>
                     <em>立即报名</em>
                   </div>
-                </a>
+                </Link>
               </li>;
             })}
           </ul>

@@ -1,0 +1,193 @@
+
+:global{
+
+  .popup{
+    display: none;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 500;
+    background-color: transparent;
+    .mask{
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-color: #000000;
+      opacity: .3;
+    }
+    .container{
+      width: 6.1rem;
+      min-height: 4rem;
+      position: relative;
+      left: .65rem;
+      top: 2rem;
+      z-index: 501;
+      box-sizing: border-box;
+      border-radius: .3rem;
+      background-color: #ffffff;
+    }
+
+    .SignUp{
+      width: 6.1rem;
+      position: relative;
+
+      .close{
+        width: .55rem;
+        height: .55rem;
+        background: url("./assets/close.png") no-repeat center;
+        position: absolute;
+        background-size: contain;
+        top: -.2rem;
+        right: -.2rem;
+        z-index: 510;
+      }
+      .header{
+        width: 100%;
+        height: 1rem;
+        line-height: 1rem;
+        text-align: center;
+        font-size: .32rem;
+        border-bottom: 1px solid #eae9e9;
+      }
+      .se1{
+        //display: none;
+        .body{
+          width: 100%;
+          padding: 0 .3rem;
+          box-sizing: border-box;
+          padding-bottom: .6rem;
+          .p_row{
+            width: 100%;
+            height: .9rem;
+            line-height: .9rem;
+            border-bottom: 1px solid #eae9e9;
+            font-size: .28rem;
+            .le{
+              width: 1.6rem;
+              float: left;
+              color: #666666;
+            }
+            .re{
+              select{
+                border: 0;
+                width: 3.8rem;
+                color: #333333;
+              }
+              input{
+                border: 0;
+              }
+              .s_sel{
+                display: inline-block;
+                height: .45rem;
+                line-height: .45rem;
+                font-size: .28rem;
+                margin-right: .2rem;
+                em{
+                  display: inline-block;
+                  width: .45rem;
+                  height: .45rem;
+                  background: url("./assets/d1.png") no-repeat;
+                  background-size: contain;
+                  vertical-align: top;
+                  margin-right: .2rem;
+                }
+              }
+              .s_sel_yes{
+                em{
+                  background: url("./assets/d2.png") no-repeat;
+                  background-size: contain;
+                }
+              }
+
+            }
+          }
+          .p_info{
+            width: 100%;
+            height: .5rem;
+            line-height: .5rem;
+            text-align: center;
+            color: red;
+          }
+          .post_status{
+            display: block;
+            width: 5.5rem;
+            height: .85rem;
+            line-height: .85rem;
+            text-align: center;
+            background-color: #cccccc;
+            color: #ffffff;
+            font-size: .36rem;
+            border-radius: .12rem;
+            margin-top: .1rem;
+            img{
+              vertical-align: text-top;
+            }
+          }
+          .post_status_yes{
+            background-color: #ff6600;
+          }
+
+
+        }
+      }
+      .se2{
+        padding: 0 .4rem;
+        display: none;
+        .header{
+          width: 100%;
+          height: 3.2rem;
+          background: url("./assets/se2.jpg") no-repeat center 10%;
+          background-size: 18%;
+          padding-top: 1.2rem;
+          .title{
+            height: .5rem;
+            line-height: .5rem;
+            text-align: center;
+            font-size: .32rem;
+            margin-bottom: .2rem;
+          }
+          p{
+            line-height: .4rem;
+            text-align: left;
+            font-size: .28rem;
+          }
+        }
+        .body{
+          width: 100%;
+          height: 4rem;
+          padding-top: .3rem;
+          .p_row{
+            width: 100%;
+            height: .4rem;
+            line-height: .4rem;
+            font-size: .26rem;
+            .le{
+              width: 1.6rem;
+              float: left;
+              color: #666666;
+            }
+            .re{
+              color: #333333;
+            }
+            .post_status_cc{
+              display: block;
+              width: 5.3rem;
+              height: .85rem;
+              line-height: .85rem;
+              text-align: center;
+              background-color: #f60;
+              color: #ffffff;
+              font-size: .36rem;
+              border-radius: .12rem;
+              margin-top: .3rem;
+            }
+          }
+        }
+      }
+
+    }
+  }
+
+}
