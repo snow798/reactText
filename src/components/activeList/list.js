@@ -12,50 +12,49 @@ export const List = React.createClass({
   getInitialState: function() {
     return {
       loaded: false,
-      type: 'm',
-      data: []
+      type: null,
+      data: [],
+      pageState:{
+          1:{     //普通活动
+              currentPage: 0,
+              totoalPage: 10,
+              pageSize: 10
+          },
+          2:{    //过期活动
+              currentPage: 0,
+              totoalPage: 10,
+              pageSize: 10
+          }
+      }
     };
   },
   componentDidMount: function(props){
     var base= this;
     var content= this.refs.listCont;
     content.addEventListener('scroll', function(ev){
-      var tp= base.state.type== 'm' ? 'eventDetails': 'siteReview';
+      var type= base.state.type;
       var scrollTop= this.scrollTop;
       if(scrollTop+ this.clientHeight+20 >= this.scrollHeight && !base.state.listLoad){
         base.state.listLoad= !base.state.listLoad;
         console.log(7777777)
-        base.props.getListData();
+        base.props.getListData(++base.state.pageState[base.state.type].currentPage, type);
       }
     }, false);
   },
   componentWillReceiveProps: function(nextProps) {
-    console.log(777444, nextProps.active, this.props.active);
+      this.setState({type: this.props.listType});
+    console.log(444322,  this.state, this.props.listType);
   },
 
-  render: function(props) {
-    let items = [433,66];
-    var list;
-    if(this.props.collection && this.props.collection.list){
-      let res= this.props.collection.list;
-      let arr= [];
-      for(var i in res) {
-        console.log(55,res[i]);
-        arr.push(res[i]);
-      }
-      this.state.data= arr;
-      /*for (var i in list) {
-        let ob= list[i];
-        items.push(<li key={i}>
-          <a>
-            <div className="img"><img src={defaultImg}/></div>
-            <div className="text">
-              <span>报名截止时间：{ob.time}</span>
-              <em>立即报名</em>
-            </div>
-          </a>
-        </li>);
-      }*/
+  render: function() {
+    var base= this;
+    var type= base.props.listType;  //列表类型
+    if(this.state.type != type){
+        base.props.getListData(++base.state.pageState[type].currentPage, type);
+    }
+    var data= base.props.collection;
+    if(data){
+      this.state.data= data;
     }else{
       console.log('no no no')
     }
@@ -66,9 +65,9 @@ export const List = React.createClass({
             {this.state.data.map(function(result, index) {
               return <li key={index}>
                 <Link to={`/activeDetail/${result.id}`}>
-                  <div className="img"><img src={defaultImg}/></div>
+                  <div className="img"><img src={result.coverImage}/></div>
                   <div className="text">
-                    <span>报名截止时间：{result.time}</span>
+                    <span>报名截止时间：{result.releaseTime}</span>
                     <em>立即报名</em>
                   </div>
                 </Link>

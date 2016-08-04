@@ -37,33 +37,47 @@ var browser = (function() {
 })();
 
 //自适应REM设置
-!function(){
-  var isChange= false, oldScreenWidth= 375, oldRem= 50;   // 默认iPhone6为基准[屏款375，默认根字体大小50px]
-  var html= document.getElementsByTagName('html')[0];
-  var getStyle = function (element,attr) {
-    if(typeof window.getComputedStyle!='undefined'){
-      return parseFloat(window.getComputedStyle(element,null)[attr]);
-    }else if(element.currentStyle){
+! function() {
+  var isChange = false,
+    oldScreenWidth = 375,
+    oldRem = 50; // 默认iPhone6为基准[屏款375，默认根字体大小50px]
+  var html = document.getElementsByTagName('html')[0];
+  var getStyle = function(element, attr) {
+    if (typeof window.getComputedStyle != 'undefined') {
+      return parseFloat(window.getComputedStyle(element, null)[attr]);
+    } else if (element.currentStyle) {
       return parseFloat(element.currentStyle[attr]);
     }
   };
-  function initRem(){
+
+  function initRem() {
     console.log(document.body.clientWidth, getStyle(html, 'font-size'));
-    html.style.fontSize= document.body.clientWidth*oldRem/oldScreenWidth+'px';
-    oldScreenWidth= document.body.clientWidth;
-    oldRem= getStyle(html, 'font-size');
-    isChange= false;
+    html.style.fontSize = document.body.clientWidth * oldRem / oldScreenWidth + 'px';
+    oldScreenWidth = document.body.clientWidth;
+    oldRem = getStyle(html, 'font-size');
+    isChange = false;
   }
-  document.addEventListener('DOMContentLoaded', function(){
+  document.addEventListener('DOMContentLoaded', function() {
     initRem();
   });
-  window.addEventListener('resize', function(){
-    if(!isChange){
-      isChange= true;
+  window.addEventListener('resize', function() {
+    if (!isChange) {
+      isChange = true;
       setTimeout(initRem, 700);
       //musicPlay.init();
     }
   })
 
+  window.util = {
+    serializeParam: function(param) {
+      if (!param) return '';
+      var qstr = [];
+      for (var key in param) {
+        qstr.push(encodeURIComponent(key) + '=' + encodeURIComponent(param[key]));
+      };
+      return qstr.join('&');
+    }
+  }
+
 }();
-window.bassUrl= 'http://127.0.0.1:4000/ok/%E5%8D%93%E5%B0%94%E8%B4%AD/ccc/react-redux-starter-kit/src/api';
+window.bassUrl = 'http://app.zallgo.com';

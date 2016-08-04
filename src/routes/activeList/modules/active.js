@@ -8,7 +8,10 @@ export const COUNTER_INCREMENT = 'ACTIVE_GET'
 // ------------------------------------
 // Actions
 // ------------------------------------
-export function getActive ({itemType = 'cur', data = null}) {
+export function getActive({
+  itemType = 'cur',
+  data = null
+}) {
   console.log(data);
   return {
     type: COUNTER_INCREMENT,
@@ -18,25 +21,42 @@ export function getActive ({itemType = 'cur', data = null}) {
   }
 }
 
-export const doubleAsync = () => {
+export const doubleAsync = (currentPage=0, type=1) => {
   return (dispatch, getState) => {
 
     return new Promise((resolve) => {
       console.log(fetch)
-      //require('data/eventList.json');
-
-      fetch(bassUrl+ '/eventList.json')
-        .then(function(res) {
-            if(res.ok){
-              res.json().then(function (data) {
-                console.log(777777,data);
-                dispatch(getActive({itemType: 'cur', data: data.data}))
-              });
-            }
-          },
-          function(err) {
-           alert('err')
-          })
+      var param = {
+        sy_sy: 'Android',
+        sy_ch: 1,
+        sy_ci: 1.0,
+        sy_cv: 1.0,
+        sy_iv: 1.3,
+        sy_di: 1,
+        sy_pa: currentPage,
+        sy_si: 5,
+        sc_st: type
+      };
+      fetch(bassUrl + '/api/schoolTopic/list.json', {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded"
+        },
+        body: util.serializeParam(param)
+      }).then(function(res) {
+          if (res.ok) {
+            res.json().then(function(data) {
+              console.log(777777, data);
+              dispatch(getActive({
+                itemType: 'cur',
+                data: data.data.schoolTopicMobileVoList || []
+              }))
+            });
+          }
+        },
+        function(err) {
+          alert('err')
+        })
 
     })
   }
@@ -52,19 +72,28 @@ export const actions = {
 // ------------------------------------
 const ACTION_HANDLERS = {
   [COUNTER_INCREMENT]: (state, action) => {
-    console.log(552,state, action)
-    let res= action.active;
-    let newData= {};
-    if(state){
-      let old= state.list;
-      let ne= action.active.list;
-      newData.list=  Object.assign({}, old, ne);
-      console.log(3333,newData, old, ne);
+    console.log(552, state, action)
+    if(!state){
+        state= Array();
     }
-    else{
-      newData= action.active;
+    let newValue= [];
+    let res = action.active;
+    /*let newData = {};
+    if (state) {
+      let old = state;
+      let ne = action.active;
+      newData = Object.assign({}, old, ne);
+      console.log(333350, old, ne,newData);
+
+    } else {
+      newData = action.active;
     }
-    return  Object.assign({}, state, newData)
+    return Object.assign({}, state, newData)*/
+
+    if(Array.isArray(res)){
+        newValue= state.concat(res);
+    }
+    return newValue;
   }
 }
 
@@ -72,7 +101,7 @@ const ACTION_HANDLERS = {
 // Reducer
 // ------------------------------------
 const initialState = 0
-export default function counterReducer (state = initialState, action) {
+export default function counterReducer(state = initialState, action) {
   const handler = ACTION_HANDLERS[action.type]
 
   return handler ? handler(state, action) : state

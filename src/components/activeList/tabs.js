@@ -17,17 +17,17 @@ export const tabs = React.createClass({
   render: function(props) {
     var mSetStyle= '';
     var pSetStyle= '';
-    if(this.props.listType== 'm'){
+    if(this.props.listType== '1'){
       mSetStyle= 'a_focus'
     }
-    if(this.props.listType== 'p'){
+    if(this.props.listType== '2'){
       pSetStyle= 'a_focus'
     }
 
     return (
       <div className="content tabs_change">
-        <a onClick={this.toggleDataType.bind(this,'m')} className={mSetStyle} data-type="m"><span>活动报名</span></a>
-        <a onClick={this.toggleDataType.bind(this,'p')} className={pSetStyle} data-type="p"><span>往期回顾</span></a>
+        <a onClick={this.toggleDataType.bind(this,'1')} className={mSetStyle} data-type="m"><span>活动报名</span></a>
+        <a onClick={this.toggleDataType.bind(this,'2')} className={pSetStyle} data-type="p"><span>往期回顾</span></a>
       </div>
     );
   }
